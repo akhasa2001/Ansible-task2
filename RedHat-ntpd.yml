@@ -1,0 +1,23 @@
+- name: Install ntpd on RedHat
+  yum: 
+    name: httpd
+    state: latest
+
+- name: start httpd
+  systemd:
+    name: httpd
+    state: started
+
+- name: install unzip
+  yum:
+    name: unzip
+    state: latest
+
+- name: Unarchive a file that needs to be downloaded (added in 2.0)
+  unarchive:
+    src: https://www.free-css.com/assets/files/free-css-templates/download/page274/agency-perfect.zip
+    dest: /tmp
+    remote_src: yes
+
+- name: move files
+  shell: mv /tmp/html-freebie-agency-perfect-master/* /var/www/html
